@@ -22,10 +22,12 @@ async def send_morning_ask(bot: Bot):
 
 
 def save_training(category: str):
-    if True:
-        # check db, insert data
+    try:
         answer = f'{LEXICON["saved"]} {LEXICON_TRAININGS[category]} - {date.today()}'
-    else:
+    except:
         answer = LEXICON['already_exist']
 
     return answer
+
+
+print(save_training('legs'))

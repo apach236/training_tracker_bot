@@ -7,9 +7,9 @@ from lexicon.lexicon import LEXICON, LEXICON_TRAININGS
 def create_asking_keyboard() -> InlineKeyboardMarkup:
 
     kb_builder = InlineKeyboardBuilder()
-    kb_builder.row(InlineKeyboardButton(text=LEXICON['Yes'], callback_data='Yes'),
+    kb_builder.row(InlineKeyboardButton(text=LEXICON['yes'], callback_data='yes'),
                    InlineKeyboardButton(
-                       text=LEXICON['No'], callback_data='No'),
+                       text=LEXICON['no'], callback_data='no'),
                    width=2)
 
     return kb_builder.as_markup()
