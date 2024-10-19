@@ -35,7 +35,7 @@ async def main():
     dp.include_router(other_handlers.router)
 
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(send_morning_ask, 'cron', hour=8, args=(bot,))
+    scheduler.add_job(send_morning_ask, 'cron', hour=17, args=(bot,))
     scheduler.start()
 
     await set_main_menu(bot)

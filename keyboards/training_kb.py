@@ -28,3 +28,14 @@ def create_trainings_keyboard() -> InlineKeyboardMarkup:
     kb_builder.row(*buttons, width=1)
 
     return kb_builder.as_markup()
+
+
+def create_insure_keyboard() -> InlineKeyboardMarkup:
+
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.row(InlineKeyboardButton(text=LEXICON['sure'], callback_data='sure'),
+                   InlineKeyboardButton(
+                       text=LEXICON['cancel'], callback_data='cancel'),
+                   width=2)
+
+    return kb_builder.as_markup()

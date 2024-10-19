@@ -1,4 +1,5 @@
 .env
+training.db
 
 .mypy_cache/
 venv/
