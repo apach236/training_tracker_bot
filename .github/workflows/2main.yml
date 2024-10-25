@@ -4,7 +4,7 @@ name: CI-CD-Pipe-To-Server
 on:
   push:
     branches:
-      - main
+      - name your branch
 
 jobs:
    my_ci_pipeline:
