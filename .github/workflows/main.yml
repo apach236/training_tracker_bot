@@ -1,0 +1,22 @@
+
+name: CI-CD-Pipe-To-Server
+env:
+	
+
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+	ci_pipeline:
+ 		runs-on: ubuntu-latest
+		steps:
+		- name: Clone git repo
+			uses: actions/checkout@v1
+	 	- name: Create ZIP
+	 		run: zip -r PACKAGE.zip ./ -x *.git*
+
+		
+		
