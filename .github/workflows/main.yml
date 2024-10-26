@@ -16,6 +16,6 @@ jobs:
            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
            ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
       - name: connect and pull
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd home/${{ secrets.SSH_USER }}/${{ secrets.PROJECT_NAME }} && git checkout ${{ secrets.BRANCH }} && git pull && exit"
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ secrets.PROJECT_NAME }} && git checkout ${{ secrets.BRANCH }} && git pull && exit"
       - name: restart service
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "sudo systemctl restart ${{ secrets.PROJECT_NAME }} && exit"
