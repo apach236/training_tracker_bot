@@ -1,16 +1,21 @@
 
-name: CI-CD-Pipe-To-Server
+name: CI-CD-bot
 
 on:
   push:
     branches:
-      - name your branch
+      - main
 
 jobs:
-   my_ci_pipeline:
+   Delivery_to_server:
       runs-on: ubuntu-latest
       steps:
-      - name: Clone git repo
-        uses: actions/checkout@v1
-      - name: Create ZIP
-        run: zip -r PACKAGE.zip ./ -x *.git*
+      - name: install ssh keys
+        run: |
+           install -m 600 -D /dev/null ~/.ssh/id_rsa
+           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+      - name: connect and pull
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
+      - name: restart service
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "sudo systemctl restart ${{ secret.PROJECT_NAME }} && exit"
